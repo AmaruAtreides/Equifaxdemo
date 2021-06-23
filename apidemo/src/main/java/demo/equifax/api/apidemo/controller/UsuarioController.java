@@ -2,8 +2,12 @@ package demo.equifax.api.apidemo.controller;
 
 import demo.equifax.api.apidemo.model.Usuario;
 import demo.equifax.api.apidemo.repository.UsuarioRepository;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -24,6 +28,7 @@ public class UsuarioController {
     public List<Usuario> getUsuarios(){
         return usuarioRepository.findAll();
     }
+
 
     @GetMapping("/{id}")
     public Usuario getUsuarioId(@PathVariable Integer id) {

@@ -1,0 +1,21 @@
+zuul:
+  routes:
+    apidemo:
+      path: /api/centros/**
+      service-id: apidemo
+    security:
+      path: /api/security/**
+      service-id: securityserverdemo
+    microusuario:
+      path: /usuarios/**
+      service-id: microusuario
+    micropeticion:
+      path: /peticiones/**
+      service-id: micropeticion
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+server:
+  port: 6565

@@ -2,8 +2,12 @@ package demo.equifax.api.apidemo.controller;
 
 import demo.equifax.api.apidemo.model.Centro;
 import demo.equifax.api.apidemo.repository.CentroRepository;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -19,6 +23,13 @@ public class CentroController {
     public CentroController(CentroRepository centroRepository){
         this.centroRepository = centroRepository;
     }
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder){
+        return restTemplateBuilder.build();
+    }
+
 
     @GetMapping
     public List<Centro> getCentros(){
